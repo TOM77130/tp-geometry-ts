@@ -64,4 +64,23 @@ describe("test LineString", () => {
         expect(l2.getPointN(0)?.x()).to.equal(11.0);
         expect(l2.getPointN(0)?.y()).to.equal(12.0);
     });
+
+    it("should return an Envelope for the LineString", () => {
+        const p1 = new Point([1.0, 5.0]);
+        const p2 = new Point([4.0, 2.0]);
+        const l = new LineString([p1, p2]);
+        const env = l.getEnvelope();
+        
+        expect(env.isEmpty()).to.be.false;
+        expect(env.getXmin()).to.equal(1.0);
+        expect(env.getYmin()).to.equal(2.0);
+        expect(env.getXmax()).to.equal(4.0);
+        expect(env.getYmax()).to.equal(5.0);
+    });
+
+    it("should return an empty Envelope for an empty LineString", () => {
+        const l = new LineString();
+        const env = l.getEnvelope();
+        expect(env.isEmpty()).to.be.true;
+    });
 });

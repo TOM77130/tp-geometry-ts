@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import Envelope from "../src/Envelope";
 
 describe("test Envelope", () => {
-    it("should be empty by default", () => {
+    it("should be empty no arg", () => {
         const env = new Envelope();
         expect(env.isEmpty()).to.be.true;
         expect(Number.isNaN(env.getXmin())).to.be.true;

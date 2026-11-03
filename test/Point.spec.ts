@@ -50,5 +50,21 @@ describe("test Point", () => {
         expect(p2.x()).to.equal(11.0);
         expect(p2.y()).to.equal(12.0);
     });
+
+    it("should return an Envelope for the point", () => {
+        const p = new Point([3.0, 4.0]);
+        const env = p.getEnvelope();
+        expect(env.isEmpty()).to.be.false;
+        expect(env.getXmin()).to.equal(3.0);
+        expect(env.getYmin()).to.equal(4.0);
+        expect(env.getXmax()).to.equal(3.0);
+        expect(env.getYmax()).to.equal(4.0);
+    });
+
+    it("should return an empty Envelope for an empty point", () => {
+        const p = new Point();
+        const env = p.getEnvelope();
+        expect(env.isEmpty()).to.be.true;
+    });
 });
 

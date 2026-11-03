@@ -38,5 +38,17 @@ describe("test Point", () => {
         p.translate(1.0, 1.0);
         expect(p.isEmpty()).to.be.true;
     });
+
+    it("should clone a point", () => {
+        const p1 = new Point([1.0, 2.0]);
+        const p2 = p1.clone();
+        p2.translate(10.0, 10.0);
+        
+        expect(p1.x()).to.equal(1.0);
+        expect(p1.y()).to.equal(2.0);
+        
+        expect(p2.x()).to.equal(11.0);
+        expect(p2.y()).to.equal(12.0);
+    });
 });
 

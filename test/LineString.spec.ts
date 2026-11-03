@@ -51,4 +51,17 @@ describe("test LineString", () => {
         l.translate(2.0, 1.0);
         expect(l.isEmpty()).to.be.true;
     });
+
+    it("should clone a LineString (deep copy)", () => {
+        const p1 = new Point([1.0, 2.0]);
+        const l1 = new LineString([p1]);
+        const l2 = l1.clone();
+        l2.translate(10.0, 10.0);
+        
+        expect(l1.getPointN(0)?.x()).to.equal(1.0);
+        expect(l1.getPointN(0)?.y()).to.equal(2.0);
+        
+        expect(l2.getPointN(0)?.x()).to.equal(11.0);
+        expect(l2.getPointN(0)?.y()).to.equal(12.0);
+    });
 });

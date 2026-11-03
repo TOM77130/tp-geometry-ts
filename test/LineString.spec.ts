@@ -34,4 +34,21 @@ describe("test LineString", () => {
         const l = new LineString([a, b]);
         expect(l.isEmpty()).to.be.false;
     });
+    it("should translate all points in the LineString", () => {
+        const p1 = new Point([1.0, 2.0]);
+        const p2 = new Point([3.0, 4.0]);
+        const l = new LineString([p1, p2]);
+        
+        l.translate(2.0, 1.0);
+        
+        expect(l.getPointN(0)?.x()).to.equal(3.0);
+        expect(l.getPointN(0)?.y()).to.equal(3.0);
+        expect(l.getPointN(1)?.x()).to.equal(5.0);
+        expect(l.getPointN(1)?.y()).to.equal(5.0);
+    });
+    it("should translate empty LineString", () => {
+        const l = new LineString();
+        l.translate(2.0, 1.0);
+        expect(l.isEmpty()).to.be.true;
+    });
 });

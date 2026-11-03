@@ -26,5 +26,17 @@ describe("test Point", () => {
         const p = new Point([3.0,4.0]);
         expect(p.isEmpty()).to.be.false;
     });
+    it("should translate point coordinates", () => {
+        const p = new Point([3.0, 4.0]);
+        p.translate(1.0, -2.0);
+        expect(p.x()).to.equal(4.0);
+        expect(p.y()).to.equal(2.0);
+    });
+
+    it("should translate if empty", () => {
+        const p = new Point();
+        p.translate(1.0, 1.0);
+        expect(p.isEmpty()).to.be.true;
+    });
 });
 

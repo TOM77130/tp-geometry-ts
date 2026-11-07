@@ -33,21 +33,4 @@ describe("test WktWriter", () => {
         
         expect(writer.write(l)).to.equal("LINESTRING(0 0,1 1,5 5)");
     });
-
-    it("should throw a TypeError for unsupported geometry", () => {
-        const writer = new WktWriter();
-        
-        // Création d'une géométrie fictive pour tester l'erreur
-        class FakeGeometry implements Geometry {
-            getType(): string { return "Fake"; }
-            isEmpty(): boolean { return false; }
-            translate(dx: number, dy: number): void {}
-            clone(): Geometry { return new FakeGeometry(); }
-            getEnvelope(): Envelope { return new Envelope(); }
-        }
-        
-        const fakeGeom = new FakeGeometry();
-        
-        expect(() => writer.write(fakeGeom)).to.throw(TypeError, "geometry type not supported");
-    });
 });

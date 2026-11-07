@@ -2,6 +2,7 @@ import Point from "./Point";
 import Geometry from "./Geometry";
 import Envelope from "./Envelope";
 import EnvelopeBuilder from "./EnvelopeBuilder";
+import GeometryVisitor from "./GeometryVisitor";
 
 export default class LineString implements Geometry {
     private points: Point[];
@@ -37,6 +38,10 @@ export default class LineString implements Geometry {
     clone(): LineString {
         const clonedPoints = this.points.map(p => p.clone());
         return new LineString(clonedPoints);
+    }
+
+    accept(visitor: GeometryVisitor): void {
+        visitor.visitLineString(this);
     }
 
     getEnvelope(): Envelope {
